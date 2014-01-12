@@ -1,51 +1,29 @@
 require 'spec_helper'
 
 describe "StaticPages" do
+  subject{page}
+  
   describe "Home page" do
-  	it "should have content 'Sample App'" do
-  		visit root_path
-  		expect(page).to have_content('Sample App')
-  	end
-
-  	it "should have title 'Home'" do
-  		visit root_path
-  		expect(page).to have_title("Ruby on rails sample app | Home")
-  	end
+    before{visit root_path}
+    it{should have_content('Sample App')}
+    it{should have_title('Ruby on rails sample app | Home')}
   end
 
   describe "Help page" do
-  	it "should have content 'Help'" do
-  		visit help_path
-  		expect(page).to have_content('Help')
-  	end
-
-  	it "should have title 'Help'" do
-  		visit help_path
-  		expect(page).to have_title("Ruby on rails sample app | Help")
-  	end
+    before{visit help_path}
+    it{should have_content('Help')}
+    it{should have_title('Ruby on rails sample app | Help')}
   end
 
   describe "About page" do
-  	it "should have content 'About App'" do
-  		visit about_path
-  		expect(page).to have_content('About App')
-  	end
-
-  	it "should have title 'About'" do
-  		visit about_path
-  		expect(page).to have_title("Ruby on rails sample app | About App")
-  	end
+    before{visit about_path}
+    it{should have_content('About')}
+    it{should have_title('Ruby on rails sample app | About App')}
   end
 
   describe "Contact page" do
-  	it "should have content 'Contact Details'" do
-  		visit contact_path
-  		expect(page).to have_content("Contact Details")
-  	end
-
-  	it "should have title 'Contact'" do
-  		visit contact_path
-  		expect(page).to have_title("Ruby on rails sample app | Contact")
-  	end
+    before{visit contact_path}
+    it{should have_content('Contact Details')}
+    it{should have_title('Ruby on rails sample app | Contact')}
   end
 end
