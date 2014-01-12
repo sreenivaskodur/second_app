@@ -24,6 +24,7 @@ describe "StaticPages" do
   describe "Contact page" do
     before{visit contact_path}
     it{should have_content('Contact Details')}
+    it{should have_selector('h1', text: 'Contact')}
     it{should have_title('Ruby on rails sample app | Contact')}
   end
 end
