@@ -80,4 +80,9 @@ describe User do
 		end
 		it{should_not be_valid}
 	end
+
+	describe "when password is lessthan 6 chars in length, then it is invalid" do
+		before{@user.password = "a" * 5}
+		it{should_not be_valid}
+	end
 end
