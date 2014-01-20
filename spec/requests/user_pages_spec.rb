@@ -5,8 +5,8 @@ describe "User Pages" do
 
   describe "new user" do
   	before{visit signup_path}
-  	it{should have_content("Sign Up")}
-  	it{should have_title(full_title("Sign Up"))}
+  	it{should have_content("Sign up")}
+  	it{should have_title(full_title("Sign up"))}
   end
 
   describe "profile page spec using active record" do
@@ -39,6 +39,13 @@ describe "User Pages" do
   		end
   	end
 
+    describe "after submission" do
+        before { click_button submit }
+
+        it { should have_title('Sign up') }
+        it { should have_content('error') }
+    end
+
   	describe "Valid signup request would increase number of users by 1" do
   		before do
   			fill_in "Name",with:"Example Name"
@@ -49,6 +56,14 @@ describe "User Pages" do
 
       it "should create user and hence increase the count of users by 1" do
   		  expect{click_button submit}.to change(User,:count).by(1)
+      end
+
+      describe "after saving the user" do
+        before { click_button submit }
+        let(:user) { User.find_by(email: 'user@example.com') }
+
+        it { should have_title(user.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
   	end
   end
