@@ -35,7 +35,7 @@ describe "User Pages" do
 
   	describe "Invalid signup request" do
   		it "should not create an account with empty fields" do
-  			expect{click submit}.not_to change(User,:count)
+  			expect{click_button submit}.not_to change(User,:count)
   		end
   	end
 
@@ -47,7 +47,9 @@ describe "User Pages" do
   			fill_in "Confirm Password",with:"testing"
   		end
 
-  		expect{click submit}.to change(User,:count).by(1)
+      it "should create user and hence increase the count of users by 1" do
+  		  expect{click_button submit}.to change(User,:count).by(1)
+      end
   	end
   end
 end
